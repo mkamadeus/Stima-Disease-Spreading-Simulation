@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using static Disease_Transmission_Simulation.FileReader;
 
 namespace Disease_Transmission_Simulation
 {
@@ -9,9 +7,10 @@ namespace Disease_Transmission_Simulation
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            FileReader f = new FileReader();
+            FileReader f = new FileReader("D:\\run.txt", "D:\\run2.txt");
 
             f.printAllLines();
+            f.convertToGraphData();
         }
     }
 }
