@@ -31,7 +31,7 @@ namespace Disease_Transmission_Simulation
             }
         }
 
-        public void convertToGraphData()
+        public void convertToGraphData(Graf G)
         {
             string[] node = populationData[0].Split(' ');
             nodeCount = node[0][0] - '0';
@@ -52,9 +52,7 @@ namespace Disease_Transmission_Simulation
                 int outgoingNode = edge[1][0] - 'A';
                 double trValue =double.Parse(edge[2]);
                 // masukkin ke graf nya
-                Graf G = new Graf();
                 G.addEdge(incomingNode, outgoingNode, trValue);
-                G.printGraf();
                 Console.WriteLine($"Node {incomingNode} to Node {outgoingNode} with T({incomingNode},{outgoingNode}) = {trValue}");
                 
             }
