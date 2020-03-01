@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
@@ -51,8 +50,11 @@ namespace Disease_Transmission_Simulation
                 string[] edge = graphData[i].Split(' ');
                 int incomingNode = edge[0][0] - 'A';
                 int outgoingNode = edge[1][0] - 'A';
-                float trValue =float.Parse(edge[2]);
-
+                double trValue =double.Parse(edge[2]);
+                // masukkin ke graf nya
+                Graf G = new Graf();
+                G.addEdge(incomingNode, outgoingNode, trValue);
+                G.printGraf();
                 Console.WriteLine($"Node {incomingNode} to Node {outgoingNode} with T({incomingNode},{outgoingNode}) = {trValue}");
                 
             }
