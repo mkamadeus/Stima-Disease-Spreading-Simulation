@@ -25,6 +25,12 @@ namespace Disease_Transmission_Simulation
             G.addEdge(3, 2, 0.1);
             G.printGraf();
 
+            Console.WriteLine("Hello World!");
+            FileReader f = new FileReader("D:\\run.txt", "D:\\run2.txt");
+
+            f.printAllLines();
+            f.convertToGraphData();
+
         }
     }
 }
