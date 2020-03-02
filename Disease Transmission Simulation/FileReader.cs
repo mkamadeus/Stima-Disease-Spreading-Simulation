@@ -31,6 +31,16 @@ namespace Disease_Transmission_Simulation
             }
         }
 
+        public int getStartingNode()
+        {
+            return this.startingNode;
+        }
+
+        public int getNodeCount()
+        {
+            return this.nodeCount;
+        }
+
         public void convertToGraphData(Graf G)
         {
             string[] node = populationData[0].Split(' ');
