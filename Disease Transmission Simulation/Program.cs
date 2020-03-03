@@ -10,10 +10,20 @@ namespace Disease_Transmission_Simulation
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            FileReader f = new FileReader("D:\\run.txt", "D:\\run2.txt");
-            Graf G = new Graf();
+
+            // Set config filename
+            const string graphFile = @"\graphData.config";
+            const string populationFile = @"\populationData.config";
+
+            // Get config directory
+            string path = Environment.CurrentDirectory + @"\config";
+
+            // Setup FileReader
+            FileReader f = new FileReader(path + graphFile, path + populationFile);
             f.printAllLines();
-            f.convertToGraphData(G);
+            
+            // Get Graph from FileReader
+            Graf G = f.convertToGraph();
             G.printGraf();
         }
     }
