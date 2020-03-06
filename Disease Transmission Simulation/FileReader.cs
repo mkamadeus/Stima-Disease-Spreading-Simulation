@@ -32,10 +32,10 @@ namespace Disease_Transmission_Simulation
         }
 
         // Convert read file to graph
-        public Graf convertToGraph()
+        public Graph convertToGraph()
         {
             // Initialize graph
-            Graf g = new Graf();
+            Graph g = new Graph();
 
             // Read population file
             string[] city = populationData[0].Split(' ');

@@ -23,8 +23,8 @@ namespace Disease_Transmission_Simulation
             f.printAllLines();
             
             // Get Graph from FileReader
-            Graf G = f.convertToGraph();
-            G.printGraf();
+            Graph G = f.convertToGraph();
+            G.printGraph();
         }
     }
 }
