@@ -37,11 +37,25 @@ namespace Disease_Transmission_Simulation
             return this.startingNode;
         }
 
+        // Get node count
         public int getNodeCount()
         {
             return this.nodeCount;
         }
+        
+        // Get edge count
+        public int getEdgeCount()
+        {
+            return this.edgeCount;
+        }
 
+        // Get population count array
+        public int[] getPopulationCount()
+        {
+            return this.populationCount;
+        }
+
+        // Convert read file data to graph
         public Graph convertToGraph()
         {
             // Initialize graph
