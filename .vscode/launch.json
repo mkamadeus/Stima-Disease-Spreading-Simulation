@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/Disease Transmission Simulation/bin/Debug/netcoreapp3.1/Disease Transmission Simulation.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Disease Transmission Simulation",
-            "console": "externalTerminal",
+            "console": "integratedTerminal",
             "stopAtEntry": false
         },
         {
