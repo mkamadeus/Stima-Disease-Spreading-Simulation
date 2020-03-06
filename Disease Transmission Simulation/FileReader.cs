@@ -32,6 +32,16 @@ namespace Disease_Transmission_Simulation
         }
 
         // Convert read file to graph
+        public int getStartingNode()
+        {
+            return this.startingNode;
+        }
+
+        public int getNodeCount()
+        {
+            return this.nodeCount;
+        }
+
         public Graph convertToGraph()
         {
             // Initialize graph
