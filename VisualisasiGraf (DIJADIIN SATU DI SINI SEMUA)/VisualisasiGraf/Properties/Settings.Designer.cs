@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GraphVisualization.Properties
+namespace VisualisasiGraf.Properties
 {
 
 

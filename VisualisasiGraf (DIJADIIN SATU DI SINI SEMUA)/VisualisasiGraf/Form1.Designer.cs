@@ -1,4 +1,4 @@
-﻿namespace GraphVisualization
+﻿namespace VisualisasiGraf
 {
     partial class Form1
     {

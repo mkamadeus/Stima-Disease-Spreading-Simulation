@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GraphVisualization")]
+[assembly: AssemblyTitle("VisualisasiGraf")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Hewlett-Packard")]
-[assembly: AssemblyProduct("GraphVisualization")]
+[assembly: AssemblyProduct("VisualisasiGraf")]
 [assembly: AssemblyCopyright("Copyright © Hewlett-Packard 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3a5ac0d6-1d0b-40a7-bc7f-1cd63b15127e")]
+[assembly: Guid("5f0423f4-767a-4faa-9d4e-d23564bc9ae0")]
 
 // Version information for an assembly consists of the following four values:
 //
