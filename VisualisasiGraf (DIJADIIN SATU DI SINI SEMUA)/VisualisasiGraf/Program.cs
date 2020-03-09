@@ -10,7 +10,7 @@ namespace VisualisasiGraf
     public class GraphVisualizated
     {
         private Graph G = new Graph();
-
+        // set up graph that will be visualizated
         public GraphVisualizated(Graph g)
         {
             for (int i = 0; i < 26; i++)
@@ -21,6 +21,7 @@ namespace VisualisasiGraf
                 }
             }
         }
+        // make a graph based on known graph
         public Microsoft.Msagl.Drawing.Graph GraphVisualizing()
         {
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
@@ -38,6 +39,8 @@ namespace VisualisasiGraf
             }
             return graph;
         }
+
+        // display the graph
         public void Visualizate(Microsoft.Msagl.Drawing.Graph graph)
         {
             Form form = new Form();
