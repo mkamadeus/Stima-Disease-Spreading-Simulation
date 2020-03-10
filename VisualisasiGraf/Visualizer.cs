@@ -10,10 +10,15 @@ namespace VisualisasiGraf
     class Visualizer
     {
         private Graph G = new Graph();
-        private List<Tuple<int, int>> infect = new List<Tuple<int, int>>();
+
         private int nodeCount, edgeCount, startingNode;
+        
+        private List<Tuple<int, int>> infectedEdge = new List<Tuple<int, int>>();
+        private List<Tuple<int, int>> uninfectedEdge = new List<Tuple<int, int>>();
+
         private int[] populationCount;
-        private List<Tuple<int, int>> uninfect = new List<Tuple<int, int>>();
+        private Boolean[] infected;
+
         public Visualizer()
         {
             // Set config filename
@@ -32,13 +37,20 @@ namespace VisualisasiGraf
             populationCount = f.getPopulationCount();
             startingNode = f.getStartingNode();
             edgeCount = f.getEdgeCount();
+
+            // Initialize graph datas
+            infected = new Boolean[nodeCount]; // buat catat node yang udah di cek
+            for (int i = 0; i < nodeCount; i++)
+                infected[i] = false;
+
+
             for (int i = 0; i < 26; i++)
             {
                 for (int j = 0; j < 26; j++)
                 {
                     if (G.getTravelProbability(i,j) != -1)
                     {
-                        uninfect.Add(Tuple.Create(i, j));
+                        uninfectedEdge.Add(Tuple.Create(i, j));
                     }
                 }
             }
@@ -57,10 +69,6 @@ namespace VisualisasiGraf
         }
         public void BFS(int day)
         {
-            // Initialize graph datas
-            Boolean[] infected = new Boolean[nodeCount]; // buat catat node yang udah di cek
-            for (int i = 0; i < nodeCount; i++)
-                infected[i] = false;
 
             // Stores P(A)
             int[] population = populationCount;
@@ -79,6 +87,8 @@ namespace VisualisasiGraf
             // While queue not empty...
             while (neighbour.Count != 0)
             {
+                VisualizeGraph();
+
                 int currentNode = (int)neighbour.Peek();
                 neighbour.Dequeue();
 
@@ -115,8 +125,8 @@ namespace VisualisasiGraf
                             // Set day infected
                             dayInfected[i] = Math.Max(dayInfected[i], d + dayInfected[currentNode]);
                             Console.WriteLine($"Transmitted on day {dayInfected[i]}.");
-                            infect.Add(Tuple.Create(currentNode, i));
-                            uninfect.Remove(new Tuple<int, int>(currentNode, i));
+                            infectedEdge.Add(Tuple.Create(currentNode, i));
+                            uninfectedEdge.Remove(new Tuple<int, int>(currentNode, i));
                         }
                         else
                         {
@@ -130,21 +140,37 @@ namespace VisualisasiGraf
         }
         public void VisualizeGraph()
         {
+            // Inititalize MSAGL graph
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            for (int i = 0; i < infect.Count; i++)
+
+
+            // For each infected edges draw red edge
+            foreach(Tuple<int,int> edge in infectedEdge)
+                graph.AddEdge(edge.Item1.ToString(), edge.Item2.ToString()).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+
+            // For each uninfected edges draw black edge
+            foreach(Tuple<int, int> edge in uninfectedEdge)
             {
-                graph.AddEdge(infect[i].Item1.ToString(), infect[i].Item2.ToString()).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                graph.FindNode(infect[i].Item1.ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Red;
-                graph.FindNode(infect[i].Item2.ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Red;
-            }
-            for (int i = 0; i < uninfect.Count; i++)
-            {
-                graph.AddEdge(uninfect[i].Item1.ToString(), uninfect[i].Item2.ToString());
+                graph.AddEdge(edge.Item1.ToString(), edge.Item2.ToString());
             }
 
+            // If node infected, set node color to red
+            for(int i = 0; i < nodeCount;i++)
+            {
+                if (infected[i])
+                    graph.FindNode(i.ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Red;
+                else
+                    graph.FindNode(i.ToString());
+
+            }
+
+            // Define new WinForm
             Form form = new Form();
+
+            // Wrap graph in the Form
             Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             viewer.Graph = graph;
+
             form.SuspendLayout();
             viewer.Dock = System.Windows.Forms.DockStyle.Fill;
             form.Controls.Add(viewer);
