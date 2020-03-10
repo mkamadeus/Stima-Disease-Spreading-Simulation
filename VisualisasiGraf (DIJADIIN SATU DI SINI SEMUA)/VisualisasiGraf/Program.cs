@@ -15,7 +15,7 @@ namespace VisualisasiGraf
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
             Visualizer V = new Visualizer();
-            V.BFS(3);
+            V.BFS(5);
             V.VisualizeGraph();
         }
     }
