@@ -13,9 +13,11 @@ namespace VisualisasiGraf
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            SimulationWindow window = new SimulationWindow();
+            Application.Run(window);
+
             Visualizer V = new Visualizer();
-            V.BFS(5);
+            V.BFS(window.daysValue);
             V.VisualizeGraph();
         }
     }

@@ -9,18 +9,20 @@ namespace VisualisasiGraf
 {
     class Visualizer
     {
-        private Graph G = new Graph();
+        public Microsoft.Msagl.GraphViewerGdi.GViewer viewer;
+        public Graph G = new Graph();
 
-        private int nodeCount, edgeCount, startingNode;
+        public int nodeCount, edgeCount, startingNode;
         
-        private List<Tuple<int, int>> infectedEdge = new List<Tuple<int, int>>();
-        private List<Tuple<int, int>> uninfectedEdge = new List<Tuple<int, int>>();
+        public List<Tuple<int, int>> infectedEdge = new List<Tuple<int, int>>();
+        public List<Tuple<int, int>> uninfectedEdge = new List<Tuple<int, int>>();
 
-        private int[] populationCount;
-        private Boolean[] infected;
+        public int[] populationCount;
+        public Boolean[] infected;
 
         public Visualizer()
         {
+
             // Set config filename
             const string graphFile = @"\graphData.config";
             const string populationFile = @"\populationData.config";
@@ -87,7 +89,7 @@ namespace VisualisasiGraf
             // While queue not empty...
             while (neighbour.Count != 0)
             {
-                VisualizeGraph();
+                //VisualizeGraph();
 
                 int currentNode = (int)neighbour.Peek();
                 neighbour.Dequeue();
@@ -138,6 +140,7 @@ namespace VisualisasiGraf
                 }
             }
         }
+
         public void VisualizeGraph()
         {
             // Inititalize MSAGL graph
@@ -164,18 +167,17 @@ namespace VisualisasiGraf
 
             }
 
-            // Define new WinForm
-            Form form = new Form();
-
-            // Wrap graph in the Form
-            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            // Wrap graph in the graphWindow
+            viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             viewer.Graph = graph;
 
-            form.SuspendLayout();
-            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            form.Controls.Add(viewer);
-            form.ResumeLayout();
-            form.ShowDialog();
+            Form graphForm = new Form();
+
+            graphForm.SuspendLayout();
+            graphForm.Controls.Add(viewer);
+            graphForm.ResumeLayout();
+
+            graphForm.ShowDialog();
         }
 
 
