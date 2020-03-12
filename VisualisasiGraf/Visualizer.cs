@@ -19,6 +19,7 @@ namespace VisualisasiGraf
 
         public int[] populationCount;
         public Boolean[] infected;
+        public string printed = "Process: \n";
 
         public Visualizer()
         {
@@ -59,7 +60,8 @@ namespace VisualisasiGraf
         }
         public static double getInfected(int population, int day)
         {
-            double I = population * day / 20;
+            double I;
+            I = population / (1 + (population - 1)*Math.Pow(Math.E, -0.25 * day));
             return I;
         }
 
@@ -105,13 +107,13 @@ namespace VisualisasiGraf
                         double S = getInfected(population[currentNode], t) * Tr;
 
                         Console.WriteLine($"S({currentNode}, {i}) = {S}");
-
+                        printed += $"S({currentNode}, {i}) = {S}\n";
                         // If transmission successful..
                         if (S > 1)
                         {
                             // Print status
                             Console.WriteLine($"Transmission from node {currentNode} to node {i} successful.");
-
+                            printed += $"Transmission from node {currentNode} to node {i} successful.\n";
                             // Set node status
                             if (!infected[i])
                             {
@@ -127,6 +129,7 @@ namespace VisualisasiGraf
                             // Set day infected
                             dayInfected[i] = Math.Max(dayInfected[i], d + dayInfected[currentNode]);
                             Console.WriteLine($"Transmitted on day {dayInfected[i]}.");
+                            printed += $"Transmitted on day {dayInfected[i]}.\n";
                             infectedEdge.Add(Tuple.Create(currentNode, i));
                             uninfectedEdge.Remove(new Tuple<int, int>(currentNode, i));
                         }
@@ -134,7 +137,7 @@ namespace VisualisasiGraf
                         {
                             // Print status
                             Console.WriteLine($"Transmission from node {currentNode} to node {i} failed.");
-                        }
+                            printed += $"Transmission from node {currentNode} to node {i} failed.\n";                       }
 
                     }
                 }

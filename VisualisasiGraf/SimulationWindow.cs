@@ -55,22 +55,33 @@ namespace VisualisasiGraf
             // Wrap graph in the graphWindow
             graph.viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             graph.viewer.Graph = graphMSAGL;
-
+            this.label1.Text = graph.printed;
             Form graphForm = new Form();
+            Form explanationForm = new Form();
 
             graphForm.SuspendLayout();
             graphForm.Controls.Add(graph.viewer);
+
+            explanationForm.SuspendLayout();
+            explanationForm.Controls.Add(label1);
 
             graphForm.TopLevel = false;
             graphForm.WindowState = FormWindowState.Maximized;
             graphForm.FormBorderStyle = FormBorderStyle.None;
 
+            explanationForm.TopLevel = false;
+            explanationForm.WindowState = FormWindowState.Maximized;
+            explanationForm.FormBorderStyle = FormBorderStyle.None;
+
             graphPanel.Controls.Add(graphForm);
-            
+            panel1.Controls.Add(explanationForm);
+
             graphForm.ResumeLayout();
+            explanationForm.ResumeLayout();
 
             graphForm.Show();
-
+            explanationForm.Show();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -103,6 +114,26 @@ namespace VisualisasiGraf
         }
 
         private void pictureBox1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void graphPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void PathOutput_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

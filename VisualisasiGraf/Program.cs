@@ -16,9 +16,9 @@ namespace VisualisasiGraf
             SimulationWindow window = new SimulationWindow();
             Application.Run(window);
 
-            Visualizer V = new Visualizer();
-            V.BFS(window.daysValue);
-            V.VisualizeGraph();
+            //Visualizer V = new Visualizer();
+            //V.BFS(window.daysValue);
+            //V.VisualizeGraph();
         }
     }
 }
