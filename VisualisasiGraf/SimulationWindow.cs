@@ -14,18 +14,18 @@ namespace VisualisasiGraf
     {
 
         public int daysValue;
-        private Visualizer graph;
 
         public SimulationWindow()
         {
             InitializeComponent();
             daysValue = 0;
-            graph = new Visualizer();
+            //graph = new Visualizer();
         }
 
         private void simulateButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Pisang");
+            Visualizer graph = new Visualizer();
+            // Start BFS process
             graph.BFS(daysValue);
 
             // Inititalize MSAGL graph
@@ -55,15 +55,19 @@ namespace VisualisasiGraf
             // Wrap graph in the graphWindow
             graph.viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             graph.viewer.Graph = graphMSAGL;
-            this.label1.Text = graph.printed;
+            
+            pathLabel.Text = graph.printed;
+
             Form graphForm = new Form();
             Form explanationForm = new Form();
+            //VScrollBar panelScroll = new VScrollBar();
 
+            // Display Graph
             graphForm.SuspendLayout();
             graphForm.Controls.Add(graph.viewer);
 
             explanationForm.SuspendLayout();
-            explanationForm.Controls.Add(label1);
+            explanationForm.Controls.Add(pathLabel);
 
             graphForm.TopLevel = false;
             graphForm.WindowState = FormWindowState.Maximized;
@@ -72,9 +76,16 @@ namespace VisualisasiGraf
             explanationForm.TopLevel = false;
             explanationForm.WindowState = FormWindowState.Maximized;
             explanationForm.FormBorderStyle = FormBorderStyle.None;
+            explanationForm.BackColor = Color.White;
 
-            graphPanel.Controls.Add(graphForm);
+            explanationForm.AutoScroll = false;
+            explanationForm.HorizontalScroll.Enabled = true;
+            explanationForm.HorizontalScroll.Visible = true;
+            explanationForm.AutoScroll = true;
+
+
             panel1.Controls.Add(explanationForm);
+            graphPanel.Controls.Add(graphForm);
 
             graphForm.ResumeLayout();
             explanationForm.ResumeLayout();
