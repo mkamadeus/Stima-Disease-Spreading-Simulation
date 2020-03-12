@@ -96,10 +96,11 @@
             // 
             // pathLabel
             // 
-            this.pathLabel.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pathLabel.AutoSize = true;
+            this.pathLabel.Font = new System.Drawing.Font("Consolas", 8.25F);
             this.pathLabel.Location = new System.Drawing.Point(3, 0);
             this.pathLabel.Name = "pathLabel";
-            this.pathLabel.Size = new System.Drawing.Size(258, 243);
+            this.pathLabel.Size = new System.Drawing.Size(115, 13);
             this.pathLabel.TabIndex = 7;
             this.pathLabel.Text = "Welcome to PANTAT.";
             this.pathLabel.Click += new System.EventHandler(this.label1_Click_1);
@@ -133,6 +134,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
