@@ -66,7 +66,7 @@ namespace VisualisasiGraf
 
             // Read population file
             string[] city = populationData[0].Split(' ');
-            nodeCount = city[0][0] - '0';
+            nodeCount = int.Parse(city[0]);
             startingNode = city[1][0] - 'A';
 
             populationCount = new int[nodeCount];
@@ -82,7 +82,7 @@ namespace VisualisasiGraf
             }
 
             // Read graph file
-            edgeCount = graphData[0][0] - '0';
+            edgeCount = int.Parse(graphData[0]);
             for (int i = 1; i <= edgeCount; i++)
             {
                 // Create edges for graph
